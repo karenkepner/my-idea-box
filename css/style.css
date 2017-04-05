@@ -1,0 +1,139 @@
+*  {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	font-family: 'Open Sans', sans-serif;
+	background-color: #FFF;
+}
+
+.input-area-container {
+	padding: 5px;
+	background-color: #E5F3F2;
+}
+
+h1,
+#idea-color {
+	margin: 10px 0;
+	text-align: center;
+	font-family: 'Roboto Slab', serif;
+	font-size: 30px;
+	color: #6D6E71;
+}
+
+#idea-color {
+	color: #00A79D;
+}
+
+#input-area {
+	margin: 0 auto;
+	width: 90%;
+}
+
+#body-input {
+	resize: none;
+}
+
+.input-field,
+.input-field::placeholder {
+		color: #939598;
+}
+.input-field {
+	box-sizing: border-box;
+	width: 100%;
+	margin: 10px 0;
+	padding: 5px;
+	border: 1px solid #D1D3D4;
+	font-size: 16px;
+}
+
+.input-field::placeholder {
+	opacity: 0.5;
+}
+
+#save-btn {
+	background-color: #00A79D;
+	color: #FFF;
+	border: none;
+}
+
+#save-btn:hover {
+	background-color: #045E55;
+}
+
+#output-area {
+	margin: 0 auto;
+	padding: 5px;
+	width: 90%;
+}
+
+.idea-card {
+	margin: 0 auto;
+	padding: 10px;
+}
+
+h3,
+.ranking {
+	display: inline-block;
+	margin: 0;
+	color: #6D6E71;
+}
+
+.card-body-text {
+	color: #939598;
+}
+
+.vote {
+	display: inline-block;
+  width: 20px;
+	height: 20px;
+}
+
+#delete-btn {
+	margin: 0;
+	float: right;
+	background: url(../images/delete.svg);
+}
+
+#delete-btn:hover {
+	background: url(../images/delete-hover.svg);
+}
+
+#upvote {
+  background: url(../images/upvote.svg);
+}
+
+#upvote:hover {
+  background: url(../images/upvote-hover.svg);
+}
+
+#downvote {
+  background: url(../images/downvote.svg);
+}
+
+#downvote:hover {
+  background: url(../images/downvote-hover.svg);
+}
+
+@media screen and (min-width: 500px){
+
+	#input-area,
+	#output-area {
+		width: 60%;
+		max-width: 800px;
+		margin: 0 auto;
+	}
+
+	#body-input,
+	#title-input {
+		height: 30px;
+	}
+
+	h1,
+	#idea-color {
+		margin: 10px 0;
+		font-size: 42px;
+	}
+}
