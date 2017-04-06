@@ -74,8 +74,11 @@ $('#display-area').on('click', '#upvote', function() {
   // var cardId = $(this).closest('.idea-card').attr('id');
 	// ideaArray = JSON.parse(localStorage.getItem('cardId'));
   // console.log(ideaArray);
-  // ideaArray.indexOf(cardId).prop(['rating' ,'rating.text()'])
-  // console.log(ideaArray.prop(cardId, updateCard));
+  // // var cardToChange = ideaArray.cardId
+	// ideaArray.forEach(function(cardId) {
+	// 	this.find(cardId);
+	// 	console.log(this.find(cardId));
+	// })
 	// // ideaArray.splice(ideaArray.rating = 'deleteCard', 1);
 	// addToLocalStorage(ideaArray);
 	// ideaCard();
@@ -91,6 +94,14 @@ $('#display-area').on('click', '#downvote', function() {
         rating.text('swill');
         break;
     }
+});
+
+$('#search-field').on('input', function() {
+	console.log('searching');
+	var lowerCaseArray = ideaArray.forEach(function(){
+		this.toLowerCase();
+	})
+	console.log(lowerCaseArray);
 });
 
 $(window).on('load', function() {
