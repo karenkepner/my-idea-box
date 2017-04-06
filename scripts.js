@@ -1,13 +1,6 @@
 var ideaArray = [];
 
 function CreateIdea(cardId, title, body, quality) {
-    this.cardId = cardId;
-    this.title = title;
-    this.body = body;
-    this.quality = quality;
-}
-
-function CreateIdea(cardId, title, body, quality) {
 	this.cardId = cardId;
 	this.title = title;
 	this.body = body;
@@ -23,36 +16,36 @@ function ideaCard() {
 		<p class="card-body-text" contenteditable="true">${idea.body}</p>
 		<div id="upvote" class="vote"></div>
 		<div id="downvote" class="vote"></div>
-		<p class="ranking">quality: <span id='rank'>${idea.quality}</span></p>
+		<p class="ranking">quality: <span id='quality'>${idea.quality}</span></p>
 		</article>`);
 		});
   };
 
 function clearFields() {
-    $('#title-input, #body-input').val("");
+  $('#title-input, #body-input').val("");
 }
 
 function addToLocalStorage(ideaArray) {
-    localStorage.clear();
-    var stringifiedArray = JSON.stringify(ideaArray);
-    localStorage.setItem('cardId', stringifiedArray);
+  localStorage.clear();
+  var stringifiedArray = JSON.stringify(ideaArray);
+  localStorage.setItem('cardId', stringifiedArray);
 };
 
 function retrieveLocalStorage() {
-	ideaArray = JSON.parse(localStorage.getItem('cardId')) || [];
-	return ideaArray;
+  ideaArray = JSON.parse(localStorage.getItem('cardId')) || [];
+  return ideaArray;
 };
 
 $('#save-btn').on('click', function() {
-    var title = $('#title-input').val();
-    var body = $('#body-input').val();
-    var cardId = Date.now();
-    var quality = "swill";
-    var newIdea = new CreateIdea(cardId, title, body, quality);
-    ideaArray.push(newIdea);
-    addToLocalStorage(ideaArray);
-    ideaCard(ideaArray);
-    clearFields();
+  var title = $('#title-input').val();
+  var body = $('#body-input').val();
+  var cardId = Date.now();
+  var quality = "swill";
+  var newIdea = new CreateIdea(cardId, title, body, quality);
+  ideaArray.push(newIdea);
+  addToLocalStorage(ideaArray);
+  ideaCard(ideaArray);
+  clearFields();
 });
 
 $('#output-area').on('click', '#delete-btn', function() {
@@ -68,28 +61,48 @@ $(window).on('load', function() {
 	ideaCard();
 });
 
-$('#output-area').on('click', '#delete-btn', function() {
-    $('.idea-card').closest('#cardId').remove();
-});
-
 $('#display-area').on('click', '#upvote', function() {
-    var $rank = $(this).parent().find('#rank');
-    console.log(rank);
-    if ($rank.text() === "swill") {
-      $rank.text('plausible');
-    } else if ($rank.text() === "plausible") {
-      $rank.text('genius');
-    }
+  var rating = $(this).parent().find('#quality');
+  switch(rating.text()) {
+    case 'swill':
+      rating.text('plausible');
+      break;
+    case 'plausible':
+      rating.text('genuis');
+      break;
+  }
+  // var cardId = $(this).closest('.idea-card').attr('id');
+	// ideaArray = JSON.parse(localStorage.getItem('cardId'));
+  // console.log(ideaArray);
+  // // var cardToChange = ideaArray.cardId
+	// ideaArray.forEach(function(cardId) {
+	// 	this.find(cardId);
+	// 	console.log(this.find(cardId));
+	// })
+	// // ideaArray.splice(ideaArray.rating = 'deleteCard', 1);
+	// addToLocalStorage(ideaArray);
+	// ideaCard();
 });
 
 $('#display-area').on('click', '#downvote', function() {
-    var $rank = $(this).parent().find('#rank');
-    if ($rank.text() === "genius") {
-      $rank.text(' plausible ');
-    } else if ($rank.text() === "plausible") {
-      $rank.text(' swill');
+    var rating = $(this).parent().find('#quality');
+    switch(rating.text()){
+      case 'genuis':
+        rating.text('plausible');
+        break;
+      case 'plausible':
+        rating.text('swill');
+        break;
     }
-  });
+});
+
+$('#search-field').on('input', function() {
+	console.log('searching');
+	var lowerCaseArray = ideaArray.forEach(function(){
+		this.toLowerCase();
+	})
+	console.log(lowerCaseArray);
+});
 
 $(window).on('load', function() {
     retrieveLocalStorage();
